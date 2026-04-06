@@ -1,3 +1,4 @@
+import { getRandomQuote } from "./quotes.js";
 // TODO 1: Import and Create express app instance
 import express from "express";
 const app = express();
@@ -13,9 +14,15 @@ import morgan from "morgan";
 app.use(morgan("dev"));
 
 // TODO 6.1: Create root route "/"
-
+app.get("/", (req, res) => {
+    res.send("Welcome to the Quotes API!");
+});
 
 // TODO 6.2: Create "/api/quote" route
-
+app.get("/api/quote", (req, res) => {
+    // TODO 6.2: Import getRandomQuote function
+    const quote = getRandomQuote();
+    res.json({ quote });
+});
 
 // TODO 7: Start server using app.listen
